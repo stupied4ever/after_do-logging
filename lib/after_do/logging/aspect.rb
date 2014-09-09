@@ -1,7 +1,7 @@
 module AfterDo
   module Logging
     class Aspect
-      def initialize(target_class, logger)
+      def initialize(target_class, logger = AfterDo::Logging.logger)
         @target_class = target_class
         @logger = logger
       end

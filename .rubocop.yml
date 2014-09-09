@@ -1,6 +1,9 @@
 Documentation:
   Enabled: false
 
+ClassAndModuleChildren:
+  Enabled: false
+
 AllCops:
   # Include gemspec and Rakefile
   Include:
