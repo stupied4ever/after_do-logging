@@ -8,19 +8,17 @@ module AfterDo
 
       def log_start(target_method)
         target_class.before target_method do |*args, _|
-          start_time = Time.now
           method = "#{target_class}##{target_method}"
 
-          log_step(method, start_time, args)
+          log_step('Started', method, args)
         end
       end
 
       def log_finish(target_method)
         target_class.after target_method do |*args, _|
-          finish_time = Time.now
           method = "#{target_class}##{target_method}"
 
-          log_step(method, finish_time, args)
+          log_step('Finished', method, args)
         end
       end
 
@@ -30,9 +28,9 @@ module AfterDo
 
       private
 
-      def log_step(method, time, args)
+      def log_step(prefix, method, args)
         arg_text = args.map(&:inspect).join(', ')
-        msg = "Finished: Method=#{method} Time=#{time} Args='#{arg_text}'"
+        msg = "#{prefix}: #{method}(#{arg_text})"
         logger.info(msg)
       end
     end
