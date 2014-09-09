@@ -1,0 +1,7 @@
+---
+pre_commits:
+- GitHooks::PreCommit::TrailingWhitespace
+- GitHooks::PreCommit::PreventDebugger
+- GitHooks::PreCommit::PreventMaster
+- GitHooks::PreCommit::Rubocop
+- GitHooks::PreCommit::Rspec

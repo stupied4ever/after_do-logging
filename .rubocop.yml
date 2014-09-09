@@ -1,0 +1,8 @@
+Documentation:
+  Enabled: false
+
+AllCops:
+  # Include gemspec and Rakefile
+  Include:
+    - '**/*.gemspec'
+    - '**/Rakefile'
