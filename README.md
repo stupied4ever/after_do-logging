@@ -20,7 +20,13 @@ Or install it yourself as:
 
 Configure your aspect to use AfterDo::Logging.
 
-Is advisable to use [after-do-loader][after_do-loader] to load your aspects.
+### Set your logger
+
+```ruby
+AfterDo::Logging.logger = logger
+```
+
+PS: Is advisable to use [after-do-loader][after_do-loader] to load your aspects.
 
 ## Contributing
 
