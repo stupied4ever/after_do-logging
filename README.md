@@ -18,7 +18,8 @@ Or install it yourself as:
 
 ## Usage
 
-Configure your aspect to use AfterDo::Logging.
+Configure your aspect to use ```AfterDo::Logging::Aspect``` or
+```AfterDo::Logging::StateTransitionAspect```.
 
 ### Set your logger
 
