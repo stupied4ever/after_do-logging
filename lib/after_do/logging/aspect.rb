@@ -7,18 +7,18 @@ module AfterDo
       end
 
       def log_start(target_method)
-        target_class.before target_method do |*args, _|
+        target_class.before target_method do |*args, object|
           method = "#{target_class}##{target_method}"
 
-          log_step('Started', method, args)
+          log_step('Started', object, method, args)
         end
       end
 
       def log_finish(target_method)
-        target_class.after target_method do |*args, _|
+        target_class.after target_method do |*args, object|
           method = "#{target_class}##{target_method}"
 
-          log_step('Finished', method, args)
+          log_step('Finished', object, method, args)
         end
       end
 
@@ -28,10 +28,14 @@ module AfterDo
 
       private
 
-      def log_step(prefix, method, args)
+      def log_step(prefix, object, method, args)
         arg_text = args.map(&:inspect).join(', ')
-        msg = "#{prefix}: #{method}(#{arg_text})"
+        msg = "#{prefix}#{id(object)}: #{method}(#{arg_text})"
         logger.info(msg)
+      end
+
+      def id(object)
+        "[#{id}]" if object.respond_to?(:id)
       end
     end
   end
