@@ -37,7 +37,7 @@ module AfterDo
       end
 
       def id(object)
-        "[#{object.id}] " if object.respond_to?(:id)
+        "[id=#{object.id}] " if object.respond_to?(:id)
       end
     end
   end

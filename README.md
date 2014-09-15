@@ -1,6 +1,9 @@
 # AfterDo::Logging
 
-After do aspect for logging method start and finish
+This gem provides classes for logging method's invocation start and finish using
+the amazing [after_do](https://github.com/PragTob/after_do) gem. Theses classes
+are compatible with the interface defined by the
+[after_do-loader](https://github.com/rranelli/after_do-loader) gem.
 
 ## Installation
 
@@ -18,16 +21,31 @@ Or install it yourself as:
 
 ## Usage
 
-Configure your aspect to use ```AfterDo::Logging::Aspect``` or
-```AfterDo::Logging::StateTransitionAspect```.
-
 ### Set your logger
+
+The first thing to do is tell `AfterDo::Logging` which logger it should use by
+setting the class variable `AfterDo::Logging.logger`.
 
 ```ruby
 AfterDo::Logging.logger = logger
+# or, if you use Rails
+AfterDo::Logging.logger = Rails.logger
 ```
 
-PS: Is advisable to use [after-do-loader][after_do-loader] to load your aspects.
+### Applying the log callbacks
+
+You can apply the logging callbacks using:
+
+```ruby
+AfterDo::Logging::Aspect.new(MyClass).log_start(:method_to_log)
+AfterDo::Logging::Aspect.new(MyClass).log_finish(:method_to_log)
+```
+
+This will log a message before _and_ after invoking `MyClass#method_to_log`.
+
+Although, the best way to do this is by using `after_do-loader` to apply the
+callbacks in a dynamic and unobtrusive way. Configure your aspect to use
+`AfterDo::Logging::Aspect` or `AfterDo::Logging::StateTransitionAspect`.
 
 ## Contributing
 
